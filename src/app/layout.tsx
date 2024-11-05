@@ -12,17 +12,17 @@ import ToastContainer from "@/components/UI/ToastContainer/ToastContainer";
 import "./globals.scss";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { locales } from "@/navigation";
-import { notFound } from "next/navigation";
+import NotFoundPage from "./not-found";
 
 const ReduxProvider = dynamic(
-	() => import("../../Providers/ReduxProvider/ReduxProvider"),
+	() => import("@/Providers/ReduxProvider/ReduxProvider"),
 	{
 		ssr: false,
 	}
 );
 
 const angryFont = localFont({
-	src: "../../../public/fonts/Angry.otf",
+	src: "../../public/fonts/Angry.otf",
 });
 
 export const metadata: Metadata = {
@@ -49,7 +49,7 @@ export default function RootLayout({
 	params: { locale: string };
 }>) {
 	if (!locales.includes(locale)) {
-		notFound();
+		// NotFound();
 	}
 	const messages = useMessages();
 	return (

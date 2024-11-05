@@ -19,19 +19,17 @@
 //   };
 // });
 
-import { getRequestConfig } from 'next-intl/server';
+import { getRequestConfig } from "next-intl/server";
 
 export default getRequestConfig(async ({ locale }) => {
-  let component = '';
-  if (locale === 'ua') {
-    component = 'componentUa';
-  } else if (locale === 'en') {
-    component = 'componentEn';
-  } else if (locale === 'de') {
-    component = 'componentDe';
-  }
+	let component = "";
+	if (locale === "ua") {
+		component = "componentUa";
+	} else if (locale === "en") {
+		component = "componentEn";
+	}
 
-  return {
-    messages: (await import(`../locales/${locale}/${component}.json`)).default,
-  };
+	return {
+		messages: (await import(`../locales/${locale}/${component}.json`)).default,
+	};
 });
