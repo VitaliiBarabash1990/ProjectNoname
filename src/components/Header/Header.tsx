@@ -16,7 +16,8 @@ import SvgIcon from "@/components/UI/SvgIcon/SvgIcon";
 
 import s from "./header.module.scss";
 import LanguageChanger from "@/components/LanguageChanger";
-import { Link, usePathname } from "@/navigation";
+import { Link, usePathname } from "@/i18n/routing";
+import LocaleSwitcher from "../LocaleSwitcher/LocaleSwitcher";
 
 const Header = () => {
 	const pathname = usePathname();
@@ -78,8 +79,7 @@ const Header = () => {
 						pathname !== AppRouteEnum.SIGN_UP &&
 						pathname !== AppRouteEnum.CONFIRM && (
 							<nav className={`${s.nav}  `}>
-								{/* <LocaleSwitcher /> */}
-								<LanguageChanger />
+								<LocaleSwitcher />
 								<Link
 									className={s.link}
 									href={

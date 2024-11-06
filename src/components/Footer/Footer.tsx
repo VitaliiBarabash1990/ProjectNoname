@@ -5,7 +5,7 @@ import FooterNav from "./FooterNav";
 import FooterIcons from "./FooterIcons";
 
 import s from "./footer.module.scss";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 const Footer: React.FC = () => {
 	return (

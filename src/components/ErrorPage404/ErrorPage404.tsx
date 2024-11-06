@@ -3,8 +3,8 @@
 import { roboto } from "@/utils/fonts";
 
 import s from "./ErrorPage404.module.scss";
-import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export default function Error404() {
 	const t = useTranslations("eror404");

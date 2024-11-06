@@ -24,6 +24,6 @@
 	},
 	"LocaleSwitcher": {
 		"label": "Change language",
-		"locale": "{locale, select, ua {Ukraine} en{England} de{Deutsch} other {Unknown}}"
+		"locale": "{locale, select, ua {Ukraine} en {England} other {Unknown}}"
 	}
 }

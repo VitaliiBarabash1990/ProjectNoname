@@ -14,16 +14,36 @@
 //   matcher: ['/', '/(ua|en|de)/:path*'],
 // };
 
-import createMiddleware from 'next-intl/middleware';
-import { localePrefix, locales } from './navigation';
+// import createMiddleware from 'next-intl/middleware';
+// import { localePrefix, locales } from './navigation';
 
-export default createMiddleware({
-  locales,
-  localePrefix,
-  defaultLocale: 'ua',
-});
+// export default createMiddleware({
+//   locales,
+//   localePrefix,
+//   defaultLocale: 'ua',
+// });
 
-// only applies this middleware to files in the app directory
+// // only applies this middleware to files in the app directory
+// export const config = {
+//   matcher: ['/((?!api|_next|.*\\..*).*)'],
+// };
+
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
+
+export default createMiddleware(routing);
+
 export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)'],
+	matcher: [
+		// Enable a redirect to a matching locale at the root
+		"/",
+
+		// Set a cookie to remember the previous locale for
+		// all requests that have a locale prefix
+		"/(de|en)/:path*",
+
+		// Enable redirects that add missing locales
+		// (e.g. `/pathnames` -> `/en/pathnames`)
+		"/((?!_next|_vercel|.*\\..*).*)",
+	],
 };

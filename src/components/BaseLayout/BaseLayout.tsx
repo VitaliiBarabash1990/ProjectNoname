@@ -1,3 +1,32 @@
+// import { clsx } from "clsx";
+// import { Inter } from "next/font/google";
+// import { NextIntlClientProvider } from "next-intl";
+// import { getMessages } from "next-intl/server";
+// import { ReactNode } from "react";
+
+// const inter = Inter({ subsets: ["latin"] });
+
+// type Props = {
+// 	children: ReactNode;
+// 	locale: string;
+// };
+
+// export default async function BaseLayout({ children, locale }: Props) {
+// 	// Providing all messages to the client
+// 	// side is the easiest way to get started
+// 	const messages = await getMessages();
+
+// 	return (
+// 		<html className="h-full" lang={locale}>
+// 			<body className={clsx(inter.className, "flex h-full flex-col")}>
+// 				<NextIntlClientProvider messages={messages}>
+// 					{children}
+// 				</NextIntlClientProvider>
+// 			</body>
+// 		</html>
+// 	);
+// }
+
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
@@ -9,7 +38,7 @@ import Footer from "@/components/Footer/Footer";
 import { Temporary } from "@/components/UI/temporary/temporary";
 import ToastContainer from "@/components/UI/ToastContainer/ToastContainer";
 
-import "./globals.scss";
+import "@/app/[locale]/globals.scss";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 
 const ReduxProvider = dynamic(
@@ -39,12 +68,12 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
+export default function BaseLayout({
 	children,
-	params: { locale },
+	locale,
 }: Readonly<{
 	children: React.ReactNode;
-	params: { locale: string };
+	locale: string;
 }>) {
 	const messages = useMessages();
 	return (
