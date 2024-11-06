@@ -11,6 +11,9 @@ import ToastContainer from "@/components/UI/ToastContainer/ToastContainer";
 
 import "./globals.scss";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 
 const ReduxProvider = dynamic(
 	() => import("../../Providers/ReduxProvider/ReduxProvider"),
@@ -46,6 +49,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 	params: { locale: string };
 }>) {
+	if (!routing.locales.includes(locale as any)) {
+		notFound();
+	}
+	setRequestLocale(locale);
 	const messages = useMessages();
 	return (
 		<html lang={locale}>

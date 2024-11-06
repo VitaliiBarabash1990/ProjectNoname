@@ -7,7 +7,7 @@ import { AppRouteEnum } from "@/libs/enums/enums";
 import { roboto } from "@/utils/fonts";
 
 import s from "./roleConfirmation.module.scss";
-import { usePathname } from "@/navigation_1";
+import { usePathname } from "@/i18n/routing";
 
 const AccountVerificationHeader = () => {
 	const pathname = usePathname();
