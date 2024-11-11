@@ -176,7 +176,13 @@
 }
 
 .toggleIconActive {
-	color: #fff;
+	@include font(40px, 2vw, 40px, 600, 44px);
+	color: var(--color);
+	transform: scaleX(1.5); /* Растягивает символ минус в 2 раза по ширине */
+
+	@include mediaMaxQuery($screen-size-xs) {
+		@include font(20px, 2vw, 20px, 600, 22px);
+	}
 }
 
 .link {
