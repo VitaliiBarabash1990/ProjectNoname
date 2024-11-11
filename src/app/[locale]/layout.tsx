@@ -1,72 +1,47 @@
-import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import localFont from "next/font/local";
+import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
+import { ReactNode } from 'react';
+import BaseLayout from '@/components/BaseLayout/BaseLayout';
+import { routing } from '@/i18n/routing';
+import { Metadata } from 'next';
 
-import { montserrat } from "@/utils/fonts";
-
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import { Temporary } from "@/components/UI/temporary/temporary";
-import ToastContainer from "@/components/UI/ToastContainer/ToastContainer";
-
-import "./globals.scss";
-import { NextIntlClientProvider, useMessages } from "next-intl";
-import { routing } from "@/i18n/routing";
-import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
-
-const ReduxProvider = dynamic(
-	() => import("../../Providers/ReduxProvider/ReduxProvider"),
-	{
-		ssr: false,
-	}
-);
-
-const angryFont = localFont({
-	src: "../../../public/fonts/Angry.otf",
-});
-
-export const metadata: Metadata = {
-	title: "JunChirp",
-	description: "JunChirp",
-	openGraph: {
-		images: [{ url: "/logo.png" }],
-		type: "website",
-	},
-	twitter: {
-		card: "summary_large_image", // Или другой тип карточки
-		images: ["/logo.png"],
-	},
-	icons: {
-		icon: "/logo.png",
-	},
+type Props = {
+  children: ReactNode;
+  params: { locale: string };
 };
 
-export default function RootLayout({
-	children,
-	params: { locale },
-}: Readonly<{
-	children: React.ReactNode;
-	params: { locale: string };
-}>) {
-	if (!routing.locales.includes(locale as any)) {
-		notFound();
-	}
-	setRequestLocale(locale);
-	const messages = useMessages();
-	return (
-		<html lang={locale}>
-			<NextIntlClientProvider locale={locale} messages={messages}>
-				<body className={`${angryFont.className} ${montserrat.className}`}>
-					<ReduxProvider>
-						<ToastContainer />
-						<Header />
-						<Temporary />
-						<main>{children}</main>
-						<Footer />
-					</ReduxProvider>
-				</body>
-			</NextIntlClientProvider>
-		</html>
-	);
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export const metadata: Metadata = {
+  title: 'JunChirp',
+  description: 'JunChirp',
+  openGraph: {
+    images: [{ url: '/logo.png' }],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/logo.png'],
+  },
+  icons: {
+    icon: '/logo.png',
+  },
+};
+
+export default async function LocaleLayout({
+  children,
+  params: { locale },
+}: Props) {
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  // Enable static rendering
+  setRequestLocale(locale);
+  console.log('layout set:', locale);
+
+  return <BaseLayout locale={locale}>{children}</BaseLayout>;
 }

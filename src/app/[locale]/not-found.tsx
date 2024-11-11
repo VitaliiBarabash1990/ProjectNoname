@@ -1,1 +1,4 @@
-export { default } from "@/components/ErrorPage404/ErrorPage404";
+// Note that `app/[locale]/[...rest]/page.tsx`
+// is necessary for this page to render.
+
+export { default } from '@/components/ErrorPage404/ErrorPage404';

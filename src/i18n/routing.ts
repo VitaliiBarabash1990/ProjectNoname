@@ -1,20 +1,13 @@
-import { createNavigation } from "next-intl/navigation";
-import { defineRouting } from "next-intl/routing";
+import { defineRouting } from 'next-intl/routing';
+import { createNavigation } from 'next-intl/navigation';
 
 export const routing = defineRouting({
-	locales: ["ua", "en"],
-	defaultLocale: "ua",
-	pathnames: {
-		"/": "/",
-		"/pathnames": {
-			ua: "/pfadnamen",
-			en: "/pathnames",
-		},
-	},
+  locales: ['en', 'ua'],
+  defaultLocale: 'ua',
+  localeCookie: true,
 });
 
-export type Pathnames = keyof typeof routing.pathnames;
 export type Locale = (typeof routing.locales)[number];
 
-export const { Link, getPathname, redirect, usePathname, useRouter } =
-	createNavigation(routing);
+export const { Link, redirect, usePathname, useRouter } =
+  createNavigation(routing);

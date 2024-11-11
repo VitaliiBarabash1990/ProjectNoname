@@ -1,6 +1,7 @@
 const AppRouteEnum = {
   ANY: '*',
   ROOT: '/',
+  REQUEST_PAGE: '/request',
   SIGN_IN: '/sign-in',
   SIGN_UP: '/register',
   SUPPORT: '/support',

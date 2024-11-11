@@ -1,6 +1,9 @@
-import RoleConfirmation from "@/components/RoleConfirmation/roleConfirmation";
+import RoleConfirmation from '@/components/RoleConfirmation/roleConfirmation';
+import { Props } from '@/types/commonTypes';
+import { setRequestLocale } from 'next-intl/server';
 
-const RoleConfirmationPage = () => {
+const RoleConfirmationPage = ({ params: { locale } }: Props) => {
+  setRequestLocale(locale);
   return (
     <section>
       <RoleConfirmation />
