@@ -4,7 +4,6 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { useRouter } from '@/i18n/routing';
 import RoleList from './roleList';
-import { roleCardData } from './roleCardText';
 import { AppRouteEnum } from '@/libs/enums/enums';
 import { useSetRoleMutation } from '@/services/auth-and-user-services';
 import { customError } from '@/types/commonTypes';
@@ -14,6 +13,8 @@ import DynamicForm from '@/components/UI/Forms/DynamicForm/DynamicForm';
 import Button from '@/components/UI/Button/Button';
 
 import s from './roleConfirmation.module.scss';
+import { useTranslations } from 'next-intl';
+import { Roles } from '@/libs/enums/app/Role';
 
 const RoleConfirmation = () => {
   const [setRole, { isLoading }] = useSetRoleMutation();
@@ -36,6 +37,70 @@ const RoleConfirmation = () => {
       }
     }
   };
+
+  const t = useTranslations('roleCardData');
+
+  const roleCardData = [
+    {
+      id: 1,
+      role: Roles.JUNIOR,
+      title: t('0.title'),
+      properties: [
+        { id: 1, text: t('0.properties.0.text') },
+        { id: 2, text: t('0.properties.1.text') },
+        { id: 3, text: t('0.properties.2.text') },
+        { id: 4, text: t('0.properties.3.text') },
+        { id: 5, text: t('0.properties.4.text') },
+        { id: 6, text: t('0.properties.5.text') },
+        { id: 7, text: t('0.properties.6.text') },
+        { id: 8, text: t('0.properties.7.text') },
+      ],
+    },
+
+    {
+      id: 2,
+      role: Roles.MENTOR,
+      title: t('1.title'),
+      properties: [
+        { id: 1, text: t('1.properties.0.text') },
+        { id: 2, text: t('1.properties.1.text') },
+        { id: 3, text: t('1.properties.2.text') },
+        { id: 4, text: t('1.properties.3.text') },
+        { id: 5, text: t('1.properties.4.text') },
+        { id: 6, text: t('1.properties.5.text') },
+        { id: 7, text: t('1.properties.6.text') },
+        { id: 8, text: t('1.properties.7.text') },
+        { id: 9, text: t('1.properties.8.text') },
+      ],
+    },
+    {
+      id: 3,
+      role: Roles.INVESTOR,
+      title: t('2.title'),
+      properties: [
+        { id: 1, text: t('2.properties.0.text') },
+        { id: 2, text: t('2.properties.1.text') },
+        { id: 3, text: t('2.properties.2.text') },
+        { id: 4, text: t('2.properties.3.text') },
+        { id: 5, text: t('2.properties.4.text') },
+        { id: 6, text: t('2.properties.5.text') },
+      ],
+    },
+
+    {
+      id: 4,
+      role: Roles.PARTNER,
+      title: t('3.title'),
+      properties: [
+        { id: 1, text: t('3.properties.0.text') },
+        { id: 2, text: t('3.properties.1.text') },
+        { id: 3, text: t('3.properties.2.text') },
+        { id: 4, text: t('3.properties.3.text') },
+        { id: 5, text: t('3.properties.4.text') },
+      ],
+    },
+  ];
+  console.log(roleCardData);
 
   return (
     <section className={s.section}>

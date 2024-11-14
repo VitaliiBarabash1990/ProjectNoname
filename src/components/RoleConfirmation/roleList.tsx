@@ -10,7 +10,7 @@ type Props = {
   onSelectRole: (roleId: string) => void;
 };
 
- const RoleList: FC<Props> = ({ roles, onSelectRole }) => {
+const RoleList: FC<Props> = ({ roles, onSelectRole }) => {
   return (
     <div className={s.list}>
       {roles.map((role) => (
